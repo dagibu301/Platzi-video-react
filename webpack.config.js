@@ -8,11 +8,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
-  devServer: {
-    open: true,
-    hot: true,
-  },
-  mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -21,11 +16,17 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.html$/,
-        use: 'html-loader',
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
       {
         test: /\.(s*)css$/,
@@ -37,14 +38,24 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.(png|gif|jpg)$/,
+        use: [
+          {
+            'loader': 'file-loader',
+            options: {
+              name: 'assets/[hash].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: 'public/index.html',
-      filename: 'index.html',
+      template: './public/index.html',
+      filename: './index.html',
     }),
-
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
     }),
