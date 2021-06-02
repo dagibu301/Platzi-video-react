@@ -7,11 +7,11 @@ const Header = () => (
     <div className='header__menu'>
       <div className='header__menu--profile'>
         <img src='../assets/user-icon.png' alt='' />
-        <p>Perfil</p>
+        <p>Profile</p>
       </div>
       <ul>
-        <li><a href='/'>Cuenta</a></li>
-        <li><a href='/'>Cerrar Sesión</a></li>
+        <li><a href='/'>Account</a></li>
+        <li><a href='/'>Sign out</a></li>
       </ul>
     </div>
   </header>
