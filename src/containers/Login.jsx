@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import '../assets/styles/components/Login.scss';
 
@@ -8,7 +9,7 @@ import twitterIcon from '../assets/static/twitter-icon.png';
 const Login = () => (
   <section className='login'>
     <section className='login__container'>
-      <h2>Inicia sesión</h2>
+      <h2>Login</h2>
       <form className='login__container--form'>
         <input className='input' type='text' placeholder='Email' />
         <input className='input' type='password' placeholder='Password' />
@@ -36,7 +37,7 @@ const Login = () => (
       <p className='login__container--register'>
         Do not have an account?
         {' '}
-        <a href='/'>Register</a>
+        <Link to='/register'>Register</Link>
       </p>
     </section>
   </section>

@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Header from '../components/Header';
 import Search from '../components/Search';
-import Footer from '../components/Footer';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
@@ -26,8 +24,7 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <>
       <Search />
       {videos.myList && videos.myList.length > 0 && (
         <Categories title='My List'>
@@ -44,8 +41,7 @@ const Home = () => {
           <Carousel>{renderList(videos.originals)}</Carousel>
         </Categories>
       )}
-      <Footer />
-    </div>
+    </>
   );
 };
 
