@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
 import Header from '../components/Header';
-import SearchBar from '../components/Search';
+import Search from '../components/Search';
+import Footer from '../components/Footer';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
-import Footer from '../components/Footer';
-
 import useInitialState from '../hooks/useInitialState';
 
 import '../assets/styles/App.scss';
@@ -15,23 +13,37 @@ import '../assets/styles/App.scss';
 const API = 'http://localhost:3000/initialState';
 
 const App = () => {
+  const videos = useInitialState(API);
 
-  const [videos, categories] = useInitialState(API);
+  const renderList = (list = []) => {
+    return (
+      <>
+        {list.map((item) => (
+          <CarouselItem key={item.id} {...item} />
+        ))}
+      </>
+    );
+  };
 
   return (
     <div>
       <Header />
-      <SearchBar />
-      {categories.map((category) => (
-        videos[category].length > 0 && (
-          <Categories title={category}>
-            <Carousel>
-              {videos[category].map((item) => (
-                <CarouselItem key={item.id} {...item} />
-              ))}
-            </Carousel>
-          </Categories>
-        )))}
+      <Search />
+      {videos.myList && videos.myList.length > 0 && (
+        <Categories title='My List'>
+          <Carousel>{renderList(videos.myList)}</Carousel>
+        </Categories>
+      )}
+      {videos.trends && videos.trends.length > 0 && (
+        <Categories title='Trending'>
+          <Carousel>{renderList(videos.trends)}</Carousel>
+        </Categories>
+      )}
+      {videos.originals && videos.originals.length > 0 && (
+        <Categories title='Originals '>
+          <Carousel>{renderList(videos.originals)}</Carousel>
+        </Categories>
+      )}
       <Footer />
     </div>
   );
