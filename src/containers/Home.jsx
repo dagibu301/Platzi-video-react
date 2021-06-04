@@ -25,7 +25,15 @@ const Home = ({ myList, trends, originals }) => {
       <Search />
       {myList && myList.length > 0 && (
         <Categories title='My List'>
-          <Carousel>{renderList(myList)}</Carousel>
+          <Carousel>
+            {myList.map((item) => (
+              <CarouselItem
+                key={item.id}
+                {...item}
+                isList
+              />
+            ))}
+          </Carousel>
         </Categories>
       )}
       {trends && trends.length > 0 && (
