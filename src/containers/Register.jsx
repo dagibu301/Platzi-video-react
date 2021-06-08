@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerRequest } from '../actions/index';
+import Header from '../components/Header';
 import '../assets/styles/components/Register.scss';
 
 const Register = (props) => {
@@ -25,36 +26,39 @@ const Register = (props) => {
   };
 
   return (
-    <section className='register'>
-      <section className='register__container'>
-        <h2>Register</h2>
-        <form className='register__container--form' onSubmit={handleSubmit}>
-          <input
-            className='input'
-            type='text'
-            placeholder='Name'
-            name='name'
-            onChange={handleInput}
-          />
-          <input
-            className='input'
-            type='text'
-            placeholder='Email'
-            name='email'
-            onChange={handleInput}
-          />
-          <input
-            className='input'
-            type='password'
-            placeholder='Password'
-            name='password'
-            onChange={handleInput}
-          />
-          <button type='submit' className='button'>Register</button>
-        </form>
-        <Link to='/login'>Login</Link>
+    <>
+      <Header isRegister />
+      <section className='register'>
+        <section className='register__container'>
+          <h2>Register</h2>
+          <form className='register__container--form' onSubmit={handleSubmit}>
+            <input
+              className='input'
+              type='text'
+              placeholder='Name'
+              name='name'
+              onChange={handleInput}
+            />
+            <input
+              className='input'
+              type='text'
+              placeholder='Email'
+              name='email'
+              onChange={handleInput}
+            />
+            <input
+              className='input'
+              type='password'
+              placeholder='Password'
+              name='password'
+              onChange={handleInput}
+            />
+            <button type='submit' className='button'>Register</button>
+          </form>
+          <Link to='/login'>Login</Link>
+        </section>
       </section>
-    </section>
+    </>
   );
 };
 
